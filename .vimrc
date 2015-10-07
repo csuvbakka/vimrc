@@ -5,14 +5,13 @@ map <F1> <Esc>
 "---------------------------------------------------------------------------
 set nocompatible "make Vim behave in a more useful way
 filetype off "required by Vundle
-let g:vundle_default_git_proto = 'git' "makes Vundle use `git` instead default `https`
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$VIM_LOCAL/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
@@ -25,12 +24,11 @@ Plugin 'python.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Shougo/unite.vim'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'vim-scripts/ccase.vim'
 Plugin 'SirVer/ultisnips'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
-
+filetype plugin indent on
 
 "--------------------------------------------------------------------------"
 "                                                                          "
@@ -71,7 +69,6 @@ set t_Co=256
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-
 
 "---------------------------------------------------------------------------
 " Mappings
@@ -117,6 +114,24 @@ nnoremap ,cl :let @*=expand("%:p")<CR>
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
 
+
+"---------------------------------------------------------------------------
+" Useful functions
+"---------------------------------------------------------------------------
+function! SaveSession()
+    call inputsave()
+    let session_name = input('Session name: ')
+    call inputrestore()
+    exec "mksession! ~/.vim/session/" . session_name . ".vim"
+endfunction
+
+function! LoadSession()
+    call inputsave()
+    let session_name = input('Session to load: ')
+    call inputrestore()
+    exec "source ~/.vim/session/" . session_name . ".vim"
+endfunction
+
 function! ToggleBackground()
     if (&background=="dark")
         :set background=light
@@ -148,13 +163,14 @@ nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>g :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>a :YcmShowDetailedDiagnostic<CR>
 
+
 "---------------------------------------------------------------------------
 " UltiSnips
 "---------------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger="<leader>k"
 let g:UltiSnipsJumpForwardTrigger="<leader>m"
 let g:UltiSnipsJumpBackwardTrigger="<leader>j"
-let g:UltiSnipsSnippetDirectories=[$VIM_LOCAL.'/UltiSnips']
+let g:UltiSnipsSnippetDirectories=['~/.vim//UltiSnips']
 
 let g:SuperTabDefaultCompletionType = '<leader>k'
 
@@ -211,6 +227,7 @@ nmap <C-J> ]e
 " Bubble multiple lines
 vmap <C-K> [egv
 vmap <C-J> ]egv
+
 
 "---------------------------------------------------------------------------
 " vim-clang-format
@@ -283,6 +300,8 @@ nnoremap <S-F3> :NERDTreeFind<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F8> :set foldmethod=syntax<CR>
 nnoremap <F11> :call ToggleBackground()<CR>
+nnoremap <F12> :call SaveSession()<CR>
+nnoremap <S-F12> :call LoadSession()<CR>
 
 
 "---------------------------------------------------------------------------
@@ -291,3 +310,5 @@ nnoremap <F11> :call ToggleBackground()<CR>
 " nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 " \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 " \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+
