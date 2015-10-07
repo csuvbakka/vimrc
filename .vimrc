@@ -106,10 +106,6 @@ vnoremap <leader>y "+y
 nnoremap <leader>y "+yw
 nnoremap <leader>p "+p
 
-
-nnoremap ,cs :let @*=expand("%")<CR>
-nnoremap ,cl :let @*=expand("%:p")<CR>
-
 " Ctrl + l/h to move between buffers
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
