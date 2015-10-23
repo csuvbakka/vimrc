@@ -25,10 +25,10 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'Shougo/unite.vim'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'SirVer/ultisnips'
+Plugin 'Raimondi/delimitMate'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
-filetype plugin indent on
 
 "--------------------------------------------------------------------------"
 "                                                                          "
@@ -82,7 +82,7 @@ nnoremap N Nzz
 nnoremap <leader>w <C-w>v<C-w>w
 
 "open .vimrc
-nnoremap <leader>v :edit $MYVIMRC<CR>
+nnoremap <leader>v :edit ~/.vimrc<CR>
 
 "press <Shift-Space> in normal mode to toggle search highlighting
 nnoremap <S-Space> :set hlsearch! hlsearch?<CR>
@@ -105,6 +105,10 @@ nnoremap <leader>o i<CR><Esc>
 vnoremap <leader>y "+y
 nnoremap <leader>y "+yw
 nnoremap <leader>p "+p
+
+
+nnoremap ,cs :let @*=expand("%")<CR>
+nnoremap ,cl :let @*=expand("%:p")<CR>
 
 " Ctrl + l/h to move between buffers
 nnoremap <C-l> :bn<CR>
@@ -166,7 +170,7 @@ nnoremap <leader>a :YcmShowDetailedDiagnostic<CR>
 let g:UltiSnipsExpandTrigger="<leader>k"
 let g:UltiSnipsJumpForwardTrigger="<leader>m"
 let g:UltiSnipsJumpBackwardTrigger="<leader>j"
-let g:UltiSnipsSnippetDirectories=['~/.vim//UltiSnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 let g:SuperTabDefaultCompletionType = '<leader>k'
 
@@ -228,9 +232,10 @@ vmap <C-J> ]egv
 "---------------------------------------------------------------------------
 " vim-clang-format
 "---------------------------------------------------------------------------
+let g:clang_format#command = "clang-format-3.6"
 let g:clang_format#style_options = {
     \ "Language" :        "Cpp",
-    \ "AccessModifierOffset" : -3,
+    \ "AccessModifierOffset" : -4,
     \ "AlignAfterOpenBracket" : "true",
     \ "AlignEscapedNewlinesLeft" : "false",
     \ "AlignOperands" :   "true",
@@ -251,7 +256,7 @@ let g:clang_format#style_options = {
     \ "BinPackArguments" : "true",
     \ "ColumnLimit" :     80,
     \ "ConstructorInitializerAllOnOneLineOrOnePerLine" : "false",
-    \ "ConstructorInitializerIndentWidth" : 3,
+    \ "ConstructorInitializerIndentWidth" : 4,
     \ "DerivePointerAlignment" : "false",
     \ "ExperimentalAutoDetectBinPacking" : "false",
     \ "IndentCaseLabels" : "true",
@@ -270,8 +275,8 @@ let g:clang_format#style_options = {
     \ "SpacesBeforeTrailingComments" : 1,
     \ "Cpp11BracedListStyle" : "true",
     \ "Standard" :        "Cpp11",
-    \ "IndentWidth" :     3,
-    \ "TabWidth" :        3,
+    \ "IndentWidth" :     4,
+    \ "TabWidth" :        4,
     \ "UseTab" :          "Never",
     \ "BreakBeforeBraces" : "Allman",
     \ "SpacesInParentheses" : "false",
@@ -285,6 +290,7 @@ let g:clang_format#style_options = {
     \ "SpaceBeforeParens" : "ControlStatements",
     \ "DisableFormat" :   "false"}
 
+let g:clang_format#auto_format = 1
 " let g:clang_format#auto_format_on_insert_leave = 1
 
 
