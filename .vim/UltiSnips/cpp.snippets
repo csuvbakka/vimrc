@@ -1,0 +1,57 @@
+snippet once "#pragma once"
+#pragma once
+
+endsnippet
+
+snippet inc "#include "
+#include "${0}"
+endsnippet
+
+snippet #inc "#include <>"
+#include <${0}>
+endsnippet
+
+snippet inca "#include <algorithm>"
+#include <algorithm>
+endsnippet
+
+snippet incm "#include <memory>"
+#include <memory>
+endsnippet
+
+snippet incs "#include <string>"
+#include <string>
+endsnippet
+
+snippet incv "#include <vector>"
+#include <vector>
+endsnippet
+
+snippet if "if () { }"
+if (${1:condition})
+{
+	${0:#statements}
+}
+endsnippet
+
+snippet forca "for (const auto& i : container)"
+for (const auto& ${1} : ${2})
+	${0}
+endsnippet
+
+snippet templ "template <typename T>"
+template <typename T>
+${0}
+endsnippet
+
+snippet cout "std::cout << stuff_to_print << std::endl;"
+std::cout << ${0} << std::endl;
+endsnippet
+
+snippet up "std::unique_ptr<>"
+std::unique_ptr<${0}>
+endsnippet
+
+snippet lambda "[ capture-list ] ( params ) -> ret { body }"
+[${1:capture-list}] (${2:params}) ${3:ret} { ${4:body} }
+endsnippet
