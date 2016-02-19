@@ -16,8 +16,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/ListToggle'
 Plugin 'vim-scripts/a.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'python.vim'
@@ -26,6 +28,10 @@ Plugin 'Shougo/unite.vim'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'SirVer/ultisnips'
 Plugin 'Raimondi/delimitMate'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'scrooloose/syntastic'
+
+Plugin 'freeo/vim-kalisi'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -44,26 +50,27 @@ set tabstop=4    "number of spaces that a <Tab> counts for
 set shiftwidth=4 "number of spaces to use for each step of (auto)indent
 set expandtab    "use the appropriate number of spaces to insert a <Tab>
 
-set shellcmdflag=-cf           "pass -cf flags to shell commands
-set ignorecase                 "smartcase is used only if this is on
-set smartcase                  "smart searching
-set number                     "show line numbers
-set autoindent                 "turn on autoindent
-set hlsearch                   "highlight searches
-set laststatus=2               "always display status line
-set scrolloff=5                "keep 5 lines above and below the cursor
+set shellcmdflag=-cf "pass -cf flags to shell commands
+set ignorecase       "smartcase is used only if this is on
+set smartcase        "smart searching
+set number           "show line numbers
+set autoindent       "turn on autoindent
+set hlsearch         "highlight searches
+set laststatus=2     "always display status line
+set scrolloff=5      "keep 5 lines above and below the cursor
+
 set nobackup                   "do not create backup file
 set noswapfile                 "do not create swap file
 set completeopt=menu           "do not show preview window
 set backspace=indent,eol,start "do not use vi compatible backspace
+
 set relativenumber "relative line numbering
-set wildmenu "enable smart command line completion
-set wildmode=full "make repeated presses cycle between all matching choices
+set wildmenu       "enable smart command line completion
+set wildmode=full  "make repeated presses cycle between all matching choices
 
 syntax on
 set background=light
 set t_Co=256
-" colorscheme solarized
 
 "remember last position when reopening a file
 if has("autocmd")
@@ -102,13 +109,12 @@ nnoremap <leader>k O<Esc>j
 nnoremap <leader>o i<CR><Esc>
 
 " copy/paste from Windows
-vnoremap <leader>y "+y
-nnoremap <leader>y "+yw
-nnoremap <leader>p "+p
+" vnoremap <leader>y "+y
+" nnoremap <leader>y "+yw
+" nnoremap <leader>p "+p
 
-
-nnoremap ,cs :let @*=expand("%")<CR>
-nnoremap ,cl :let @*=expand("%:p")<CR>
+" nnoremap ,cs :let @*=expand("%")<CR>
+" nnoremap ,cl :let @*=expand("%:p")<CR>
 
 " Ctrl + l/h to move between buffers
 nnoremap <C-l> :bn<CR>
@@ -200,6 +206,14 @@ let g:airline_theme = 'ubaryd'
 
 
 "---------------------------------------------------------------------------
+" ListToggle
+"---------------------------------------------------------------------------
+let g:lt_location_list_toggle_map = '<leader>q'
+let g:lt_quickfix_list_toggle_map = '<F2>'
+let g:lt_height = 5
+
+
+"---------------------------------------------------------------------------
 " Unite
 "---------------------------------------------------------------------------
 nnoremap <leader>b :Unite -start-insert -auto-resize -direction=belowright buffer<CR>
@@ -227,7 +241,6 @@ nmap <C-J> ]e
 " Bubble multiple lines
 vmap <C-K> [egv
 vmap <C-J> ]egv
-
 
 "---------------------------------------------------------------------------
 " vim-clang-format
@@ -299,7 +312,6 @@ let g:clang_format#auto_format = 1
 "---------------------------------------------------------------------------
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <S-F3> :NERDTreeFind<CR>
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F8> :set foldmethod=syntax<CR>
 nnoremap <F11> :call ToggleBackground()<CR>
 nnoremap <F12> :call SaveSession()<CR>
