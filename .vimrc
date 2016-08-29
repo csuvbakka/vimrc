@@ -168,6 +168,7 @@ let g:ycm_server_log_level = 'debug'
 nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>g :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>a :YcmShowDetailedDiagnostic<CR>
+nnoremap <leader>q :YcmCompleter FixIt<CR>:ccl<CR>
 
 
 "---------------------------------------------------------------------------
