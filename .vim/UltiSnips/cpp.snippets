@@ -34,6 +34,11 @@ if (${1:condition})
 }
 endsnippet
 
+snippet ifo "if ()"
+if (${1:condition})
+	${0:#statements}
+endsnippet
+
 snippet forca "for (const auto& i : container)"
 for (const auto& ${1} : ${2})
 	${0}
@@ -58,4 +63,12 @@ endsnippet
 
 snippet cstr "const std::string& "
 const std::string& ${0}
+endsnippet
+
+snippet svec "std::vector<std::string>"
+std::vector<std::string> ${0}
+endsnippet
+
+snippet str "std::string"
+std::string ${0}
 endsnippet
