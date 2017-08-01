@@ -13,25 +13,19 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Valloric/ListToggle'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'python.vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'Shougo/unite.vim'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'SirVer/ultisnips'
 Plugin 'Raimondi/delimitMate'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-unimpaired'
 
-Plugin 'freeo/vim-kalisi'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -121,32 +115,6 @@ nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
 
 
-"---------------------------------------------------------------------------
-" Useful functions
-"---------------------------------------------------------------------------
-function! SaveSession()
-    call inputsave()
-    let session_name = input('Session name: ')
-    call inputrestore()
-    exec "mksession! ~/.vim/session/" . session_name . ".vim"
-endfunction
-
-function! LoadSession()
-    call inputsave()
-    let session_name = input('Session to load: ')
-    call inputrestore()
-    exec "source ~/.vim/session/" . session_name . ".vim"
-endfunction
-
-function! ToggleBackground()
-    if (&background=="dark")
-        :set background=light
-    else
-        :set background=dark
-    endif
-endfunction
-
-
 "--------------------------------------------------------------------------"
 "                                                                          "
 "                           Plugin specific settings                       "
@@ -157,8 +125,6 @@ endfunction
 " YouCompleteMe
 "---------------------------------------------------------------------------
 let g:ycm_collect_identifiers_from_tags_files = 0
-" let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_warning_symbol = 'W'
 
@@ -183,13 +149,6 @@ let g:SuperTabDefaultCompletionType = '<leader>k'
 
 
 "---------------------------------------------------------------------------
-" NERDTree
-"---------------------------------------------------------------------------
-let g:NERDTreeDirArrows=0 "old-school look
-let g:NERDTreeMouseMode=2 "single click on directories, double on files to open
-
-
-"---------------------------------------------------------------------------
 " a.vim
 "---------------------------------------------------------------------------
 let g:alternateExtensions_cc = "hh"
@@ -204,22 +163,6 @@ nnoremap <leader><leader>t :AV<CR>
 "---------------------------------------------------------------------------
 let g:airline_theme = 'ubaryd'
 " let g:airline_theme = 'solarized'
-
-
-"---------------------------------------------------------------------------
-" ListToggle
-"---------------------------------------------------------------------------
-let g:lt_location_list_toggle_map = '<leader>q'
-let g:lt_quickfix_list_toggle_map = '<F2>'
-let g:lt_height = 5
-
-
-"---------------------------------------------------------------------------
-" Unite
-"---------------------------------------------------------------------------
-nnoremap <leader>b :Unite -start-insert -auto-resize -direction=belowright buffer<CR>
-nnoremap <leader>l :Unite -start-insert -auto-resize -direction=belowright line<CR>
-nnoremap <leader>f :Unite -start-insert -auto-resize -direction=belowright file bookmark<CR>
 
 
 "---------------------------------------------------------------------------
@@ -311,12 +254,7 @@ let g:clang_format#auto_format = 1
 "---------------------------------------------------------------------------
 " F key mappings
 "---------------------------------------------------------------------------
-nnoremap <F3> :NERDTreeToggle<CR>
-nnoremap <S-F3> :NERDTreeFind<CR>
 nnoremap <F8> :set foldmethod=syntax<CR>
-nnoremap <F11> :call ToggleBackground()<CR>
-nnoremap <F12> :call SaveSession()<CR>
-nnoremap <S-F12> :call LoadSession()<CR>
 
 
 "---------------------------------------------------------------------------
