@@ -140,7 +140,7 @@ nnoremap <leader>q :YcmCompleter FixIt<CR>:ccl<CR>
 "---------------------------------------------------------------------------
 " UltiSnips
 "---------------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<leader>k"
+let g:UltiSnipsExpandTrigger="<leader>a"
 let g:UltiSnipsJumpForwardTrigger="<leader>m"
 let g:UltiSnipsJumpBackwardTrigger="<leader>j"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
