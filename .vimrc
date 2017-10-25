@@ -50,6 +50,7 @@ set smartcase        "smart searching
 set number           "show line numbers
 set autoindent       "turn on autoindent
 set hlsearch         "highlight searches
+set incsearch        "incremental search
 set laststatus=2     "always display status line
 set scrolloff=5      "keep 5 lines above and below the cursor
 
@@ -63,8 +64,9 @@ set wildmenu       "enable smart command line completion
 set wildmode=full  "make repeated presses cycle between all matching choices
 
 syntax on
-set background=light
+set background=dark
 set t_Co=256
+colorscheme gruvbox
 
 "remember last position when reopening a file
 if has("autocmd")
