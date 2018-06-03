@@ -2,6 +2,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tweekmonster/deoplete-clang2'
+Plug 'sbdchd/neoformat'
 
 Plug 'morhetz/gruvbox'
 
@@ -58,6 +59,8 @@ nnoremap <leader>o i<CR><Esc>
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
 
+nnoremap <leader>r :Neoformat<CR>
+
 
 
 " Use deoplete.
@@ -70,3 +73,6 @@ call deoplete#custom#option({
 \ })
 inoremap <silent><expr> <Tab>
     \ pumvisible() ? "\<C-n>" : deoplete#manual_complete()
+
+let g:deoplete#sources#clang#clang_complete_database = 'build'
+
